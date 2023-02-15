@@ -19,13 +19,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Groups />
-      {/* <Loading /> */}
+      {fontsLoaded ? <Groups /> : <Loading />}
     </ThemeProvider>
   );
-  // return (
-  // <ThemeProvider theme={theme}>
-  //     {fontsLoaded ? <Groups /> : <Loading />}
-  // </ThemeProvider>
-  // );
 }
