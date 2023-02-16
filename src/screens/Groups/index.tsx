@@ -3,23 +3,36 @@ import GroupCard from "@components/GroupCard";
 import Header from "@components/Header";
 import Highlight from "@components/Highlight";
 import ListEmpty from "@components/ListEmpty";
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { groupGetAll } from "@storage/group/groupGetAll";
+import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { Container } from "./styles";
 
 const Groups = () => {
-  const [groups, setGroups] = useState([
-    "Galera da Dom",
-    "povo da da da da da da ",
-    "galera da igreja",
-  ]);
+  const [groups, setGroups] = useState<string[]>([]);
 
   const { navigate } = useNavigation();
 
   function handleNewGroup() {
     navigate("new");
   }
+
+  useFocusEffect(
+    useCallback(() => {
+      async function fetchGroups() {
+        try {
+          const data = await groupGetAll();
+
+          setGroups(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      fetchGroups();
+    }, [])
+  );
 
   return (
     <Container>
