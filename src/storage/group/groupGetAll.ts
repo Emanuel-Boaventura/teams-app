@@ -11,6 +11,5 @@ export async function groupGetAll() {
 
   } catch (error) {
     throw error;
-
   }
 }
