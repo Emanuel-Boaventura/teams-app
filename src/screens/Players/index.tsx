@@ -30,7 +30,7 @@ type RouteParams = {
 const Players = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [playerName, setPlayerName] = useState("");
-  const [team, setTeam] = useState("");
+  const [team, setTeam] = useState("time a");
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
   const { navigate } = useNavigation();
 
@@ -41,7 +41,7 @@ const Players = () => {
 
   async function handleAddPlayer() {
     const newPlayerName = playerName.trim();
-    if (newPlayerName.length > 0)
+    if (newPlayerName.length === 0)
       return Alert.alert(
         "Nova pessoa",
         "Informe o nome da pessoa para adicionar."
@@ -178,7 +178,11 @@ const Players = () => {
         />
       )}
 
-      <Button title="Remover turma" type="secondary" />
+      <Button
+        title="Remover turma"
+        type="secondary"
+        onPress={handleRemoveGroup}
+      />
     </Container>
   );
 };

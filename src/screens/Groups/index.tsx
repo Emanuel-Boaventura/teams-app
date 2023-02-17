@@ -68,7 +68,7 @@ const Groups = () => {
 
       <Button
         title="Criar nova turma"
-        type="secondary"
+        type="primary"
         onPress={handleNewGroup}
       />
     </Container>
